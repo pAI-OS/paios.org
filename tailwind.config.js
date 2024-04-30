@@ -4,8 +4,11 @@ module.exports = {
     extend: {
       backgroundImage: theme => ({
         'background-pattern': "url('/img/background-pattern.svg')",
-      })
+      }),
+      fontFamily: {
+        sans: ['"DM Sans"', "system-ui"],
+      },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
