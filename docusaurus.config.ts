@@ -73,6 +73,14 @@ const config: Config = {
   themeConfig: {
     // TODO: Replace with your project's social card
     //image: 'img/docusaurus-social-card.jpg',
+    announcementBar: {
+      id: "paios-ed",
+      content:
+        'Early demo of pAI-OS is now available &mdash; <a href="blog/paios-early-demo/">learn more</a>.',
+      backgroundColor: "#ffda18",
+      textColor: "#1b1d20",
+      isCloseable: true,
+    },
     navbar: {
       title: 'pAI-OS',
       logo: {
