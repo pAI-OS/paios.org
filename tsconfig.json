@@ -1,7 +1,12 @@
 {
-  // This file is not used in compilation. It is here just for a nice editor experience.
   "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
-    "baseUrl": "."
+    "lib": ["ES2022", "DOM"],
+    "baseUrl": ".",
+    "resolveJsonModule": true,
+    "paths": {
+      "@theme/*": ["src/theme/*"],
+      "@site/*": ["*"]
+    }
   }
 }
