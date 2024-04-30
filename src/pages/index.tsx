@@ -23,7 +23,7 @@ export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Personal AI Operating System`}
+      title={`Personal Artificial Intelligence Operating System`}
       description={`Personal Artificial Intelligence Operating System (${siteConfig.title})`}>
       <BackgroundPattern />
       <HomepageHeader />
