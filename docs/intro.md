@@ -2,10 +2,18 @@
 sidebar_position: 1
 ---
 
-# Intro
+# Getting Started
 
-Let's discover **pAI-OS in less than 5 minutes**. Soon.
+Clone the repository:
 
-## Getting Started
+`git clone https://github.com/pAI-OS/paios.git`
 
-Get started by **cloning the repo**.
+Start the backend per [backend/README.md](https://github.com/pAI-OS/paios/blob/main/backend/README.md):
+
+`python3 main.py`
+
+Start the admin interface per [admin/README.md](https://github.com/pAI-OS/paios/blob/main/admin/README.md):
+
+`npm run dev`
+
+Visit [http://localhost:5173/](http://localhost:5173/)
