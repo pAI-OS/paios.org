@@ -1,6 +1,4 @@
-import clsx from 'clsx';
 import Heading from '@theme/Heading';
-import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
@@ -43,13 +41,13 @@ const FeatureList: FeatureItem[] = [
 
 function Feature({title, Svg, description}: FeatureItem) {
   return (
-    <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
+    <div className="w-1/3">
+      <div>
+        <Svg className="h-[200px] w-[200px] mx-auto" role="img" />
       </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
+      <div className="text-center px-4">
+        <Heading as="h3" className="text-lg font-bold">{title}</Heading>
+        <p className="text-sm">{description}</p>
       </div>
     </div>
   );
@@ -57,8 +55,8 @@ function Feature({title, Svg, description}: FeatureItem) {
 
 export default function HomepageFeatures(): JSX.Element {
   return (
-    <section className={styles.features}>
-      <div className="container">
+    <section className="flex items-center p-8 w-full">
+      <div className="container mx-auto">
         <div className="row">
           {FeatureList.map((props, idx) => (
             <Feature key={idx} {...props} />
