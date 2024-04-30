@@ -9,18 +9,11 @@ function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <header className="">
-      <div className="container mx-auto text-center py-16">
-        <Heading as="h1" className="text-4xl font-bold text-white">
+      <div className="container mx-auto text-center py-12">
+        <Heading as="h1" className="text-6xl font-bold text-white">
           {siteConfig.title}
         </Heading>
-        <p className="text-xl py-6 text-white">{siteConfig.tagline}</p>
-        <div className="py-5">
-          <Link
-            className="bg-white rounded-md text-gray-500 px-4 py-3"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
-          </Link>
-        </div>
+        <p className="text-xl py-10 text-white">{siteConfig.tagline}</p>
       </div>
     </header>
   );
