@@ -135,7 +135,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Kwaai, a California 501(c)3 Public Benefit Corporation.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Kwaai, a California 501(c)3 non-profit.`,
     },
     prism: {
       theme: prismThemes.github,
