@@ -69,8 +69,8 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    // TODO: Replace with your project's social card
+    //image: 'img/docusaurus-social-card.jpg',
     navbar: {
       title: 'pAI-OS',
       logo: {
@@ -86,7 +86,7 @@ const config: Config = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          to: 'https://github.com/facebook/docusaurus',
           label: 'GitHub',
           position: 'right',
         },
@@ -109,15 +109,15 @@ const config: Config = {
           items: [
             {
               label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              to: 'https://stackoverflow.com/questions/tagged/docusaurus',
             },
             {
               label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              to: 'https://discordapp.com/invite/docusaurus',
             },
             {
               label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
+              to: 'https://twitter.com/docusaurus',
             },
           ],
         },
@@ -130,7 +130,7 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              to: 'https://github.com/facebook/docusaurus',
             },
           ],
         },
