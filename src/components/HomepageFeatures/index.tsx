@@ -12,8 +12,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw/undraw_chat_bot_re_e2gj.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Design and train your AI to think, learn, and adapt like you, making it your ultimate digital companion. Personalize your AI to fit your unique needs and style.
       </>
     ),
   },
@@ -22,8 +21,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw/undraw_my_personal_files_re_3q0p.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Unify your digital life by integrating all your files, data, and accounts into a single, secure hub. Access your information anywhere, anytime, and stay organized.
       </>
     ),
   },
@@ -32,8 +30,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw/undraw_safe_re_kiil.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Take control of your digital privacy by selectively sharing access to your personal data. Easily grant or revoke access permissions to protect your sensitive information.
       </>
     ),
   },
