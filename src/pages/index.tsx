@@ -1,13 +1,14 @@
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
+import BackgroundPattern from '@site/src/components/BackgroundPattern';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Heading from '@theme/Heading';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
-    <header className="bg-blue-500">
+    <header className="">
       <div className="container mx-auto text-center py-24">
         <Heading as="h1" className="text-4xl font-bold text-white">
           {siteConfig.title}
@@ -31,6 +32,7 @@ export default function Home(): JSX.Element {
     <Layout
       title={`Personal AI Operating System`}
       description={`Personal Artificial Intelligence Operating System (${siteConfig.title})`}>
+      <BackgroundPattern />
       <HomepageHeader />
       <main>
         <HomepageFeatures />
