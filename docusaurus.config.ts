@@ -38,14 +38,14 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/kwaai-ai-lab/paios',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/kwaai-ai-lab/paios',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -55,7 +55,7 @@ const config: Config = {
   ],
 
   plugins: [
-    async function myPlugin(context, options) {
+    async function tailwindPlugin(context, options) {
       return {
         name: "docusaurus-tailwindcss",
         configurePostCss(postcssOptions) {
@@ -80,13 +80,13 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'documentationSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Intro',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          to: 'https://github.com/facebook/docusaurus',
+          to: 'https://github.com/kwaai-ai-lab/paios',
           label: 'GitHub',
           position: 'right',
         },
@@ -99,7 +99,7 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
+              label: 'Intro',
               to: '/docs/intro',
             },
           ],
@@ -108,16 +108,12 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              to: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'Kwaai',
+              to: 'https://www.kwaai.ai',
             },
             {
-              label: 'Discord',
-              to: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'Twitter',
-              to: 'https://twitter.com/docusaurus',
+              label: 'LinkedIn',
+              to: 'https://www.linkedin.com/company/kwaailab',
             },
           ],
         },
@@ -130,7 +126,7 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              to: 'https://github.com/facebook/docusaurus',
+              to: 'https://github.com/kwaai-ai-lab/paios',
             },
           ],
         },
