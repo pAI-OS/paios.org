@@ -1,0 +1,14 @@
+---
+slug: paios-development-update-may-2024
+title: pAI-OS Development Update (May 2024)
+authors: [samj]
+tags: [paios, open-source, developer]
+---
+
+I started working on bringing the front- and backend into the same server environment and was initially going to find a cross-platform way to deploy nginx as a reverse proxy for various pAI-OS components, but the result was likely to be brittle. I then moved on to having a single server instance that also serves the frontend/dist files as static files, meaning you can start one server and immediately access pAI-OS.
+
+Uvicorn (https://www.uvicorn.org/) is an ASGI (asynchronous equivalent of WSGI) web server implementation for Python that happens to be the one Connexion uses. Connexion, which reads the pAI-OS OpenAPI spec and automatically binds URLs to python functions, has recently had a major release that moves from synchronous (WSGI) to asynchronous (ASGI) by default (https://connexion.readthedocs.io/en/latest/v3.html) and it's as good a time as any to jump into the future.
+
+This probably would have been unnecessary if the OS was only involving itself in configuration/deployment/etc. but as it already has awareness of assets I figured it will likely end up in the flow of user queries before long, and many of those will likely be WebSockets which are kryptonite for synchronous servers (WSGI). As such, building a common server for front- and backend has turned into a migration from WSGI to ASGI which is now nearly complete on the feature/uvicorn branch: https://github.com/pAI-OS/paios/tree/feature/uvicorn
+
+I'd suggest holding off a few more days on testing the code on main as I'll be merging soon.
