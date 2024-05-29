@@ -1,0 +1,12 @@
+---
+slug: developers-developers-developers
+title: pAI-OS Developers! Developers! Developers!
+authors: [samj]
+tags: [paios, open-source, developer]
+---
+
+If you've been waiting to kick the tires then now's a good time to git clone [https://github.com/pAI-OS/paios](https://github.com/pAI-OS/paios), run python -m paios (after running python3 paios/scripts/setup_environment.py the first time and activating the virtual environment every time with source paios/.venv/bin/activate), before visiting http://localhost:3080
+
+One of the biggest changes is that it's now a single server (instead of one for frontend and one for backend) all served out of that same URL (with the API at /api/v1 and its docs at /api/v1/ui). I've also eliminated the Node.js dependency for early adopters and users by having the frontend built for the canary branch by GitHub Actions on every commit to main. You do still need to have Python installed, but it comes with Linux there are installers for macOS and Windows (you don't need to install Docker or anything like that).
+
+I've also been migrating to a modern asynchronous architecture so we don't have to look back once we start building on it. I'm in the process of migrating the abilities infrastructure in backend/api.py to backend\managers\AbilitiesManager.py (and DownloadsManager.py) so you can't download and run models for the moment, but I've broken the back of it now.
