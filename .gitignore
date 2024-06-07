@@ -1,5 +1,5 @@
 # Editor files
-.vscode/*
+#.vscode/*
 !.vscode/settings.json.sample
 
 # Dependencies
