@@ -1,5 +1,5 @@
 # Editor files
-#.vscode/*
+.vscode/*
 !.vscode/settings.json.sample
 
 # Dependencies
@@ -22,8 +22,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# Developer environment
-.vscode
-
-
