@@ -1,3 +1,7 @@
+# Editor files
+.vscode/*
+!.vscode/settings.json.sample
+
 # Dependencies
 /node_modules
 
