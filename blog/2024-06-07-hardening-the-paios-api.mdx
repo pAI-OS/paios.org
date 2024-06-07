@@ -27,9 +27,9 @@ pAI-OS is designed to be cross platform, but different platforms accept differen
 
 ```
 fileName:
-type: string
-description: A filename that is valid on macOS, Windows, and Linux
-example: Mistral-7B-Instruct-v0.3-Q8_0.gguf
+    type: string
+    description: A filename that is valid on macOS, Windows, and Linux
+    example: Mistral-7B-Instruct-v0.3-Q8_0.gguf
 pattern: '^[^<>:;,?"*|/]+$'
 ```
 
@@ -52,11 +52,11 @@ uuid4:
 For a more complex example one need look no further than an almost 100% RFC-compliant email regex:
 
 ```
-    email:
-      type: string
-      format: email
-      example: contact@kwaai.ai
-      pattern: (?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)_|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])_")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]\*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])
+email:
+    type: string
+    format: email
+    example: contact@kwaai.ai
+    pattern: (?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)_|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])_")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]\*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])
 ```
 
 # Path Traversal Example
