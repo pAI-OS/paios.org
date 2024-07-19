@@ -1,0 +1,80 @@
+---
+slug: code-signing-to-prevent-supply-chain-vulnerabilities
+title: Code signing to prevent supply chain vulnerabilities
+authors: [samj]
+tags: [paios, open-source, developer, security]
+---
+
+In our ongoing efforts to raise the bar and improve the security and integrity of our codebase, we've implemented a robust system of GPG signature verification and code ownership all the way back to the repo root/initial commit. This post will explain the key components of our approach and its benefits and implications.
+
+Contributors can fork the [pAI-OS/paios](https://github.com/pAI-OS/paios) repo (`git clone https://github.com/pAI-OS/paios.git`) and create pull requests (with GPG signed commits!) from there, and more active active contributors can work on feature-\* branches in the paios repo itself where it is more readily accessible to others. The first time we accept a pull request we'll need to do a quick video keysigning ceremony with a maintainer (currently [myself](https://github.com/samj) and [Karsten Wade](https://github.com/karstenwade)) where you show ID and confirm compliance with [CONTRIBUTING.md](https://github.com/pAI-OS/paios/blob/main/CONTRIBUTING.md) before we sign your key and have you publish it on a GPG keyserver (i.e., keyserver.ubuntu.com with `gpg --keyserver keyserver.ubuntu.com --send-keys <0xabcd1234>`).
+
+This was inspired by:
+
+- **Debian**: My work as a Debian developer (where new maintainers need to have their [key signed](https://wiki.debian.org/Keysigning) by at least two existing developers before they can be added to the Debian keyring)
+- **CAcert**: My work as Organisation Assurance Officer for community certification authority [CAcert](https://cacert.org)
+- **Apple**: Apple's recent pioneering work on [Private Cloud Compute](https://security.apple.com/blog/private-cloud-compute/) (some 15 years into the transition from products to services that we call "cloud").
+- **Qubes OS**: Security operating system [Qubes OS](https://www.qubes-os.org/)' own [code signing](https://www.qubes-os.org/doc/code-signing/) policy requiring that "_All contributions to the Qubes OS source code must be cryptographically signed by the author’s PGP key._"
+
+# Key Components
+
+1. **CODEOWNERS File**: The [CODEOWNERS](https://github.com/pAI-OS/paios/blob/main/.github/CODEOWNERS) file defines who is responsible for different parts of the repository. This ensures that the right people are automatically requested for review when changes are requested.
+1. **GPG Signature Verification Workflow**: We've set up a GitHub Actions workflow ([verify-gpg-signatures.yml](https://github.com/pAI-OS/paios/blob/main/.github/workflows/verify-gpg-signatures.yml)) that runs on pull requests, pushes to the main branch, and can be manually triggered. This workflow sets up the GPG environment and runs our custom verification script.
+1. **GPG Signature Verification Script**: Our custom verification script ([verify-gpg-signatures.sh](https://github.com/pAI-OS/paios/blob/main/.github/scripts/verify-gpg-signatures.sh)) is the heart of our verification process. It imports trusted GPG keys from the [gpg-keys](https://github.com/pAI-OS/paios/tree/main/.github/gpg-keys), verifies commit signatures, checks if signing keys are trusted or signed by trusted keys, and reports any issues with commit signatures.
+
+# Benefits of This Approach
+
+1. **Integrity**: By requiring GPG signatures on all commits, we ensure - _and you can verify_ - that all code changes are coming from verified contributors.
+1. **Accountability**: The CODEOWNERS file clearly defines who is responsible for different parts of the codebase. It currently contains myself and Karsten Wade, a fellow long-time open source community member.
+1. **Automation**: The GitHub Actions workflow automatically checks signatures on new pull requests and pushes.
+1. **Flexibility**: The workflow can be manually triggered with a flag to check all commits in the repository.
+1. **Transparency**: Any issues with signatures are clearly reported in the GitHub interface.
+
+# Implications for Developers
+
+We've recently migrated from SSH to GPG signatures for all commits in our history. As a result, anyone who cloned the [pAI-OS/paios](https://github.com/pAI-OS/paios) repo before July 15, 2024, will need to re-clone it. This is because the commit hashes, which are generated from the contents of the commit itself, have necessarily changed due to the rewriting of history to accommodate the new GPG signatures:
+
+```
+> git log --reverse --pretty=raw
+commit adfcc54c511955d56576fa903eb07605e3c32c1a
+tree fb3a2b360e4cb9ea6100006d56ca0bab863c520a
+author Sam Johnston <samj@samj.net> 1712456042 -0700
+committer Sam Johnston <samj@samj.net> 1712456042 -0700
+gpgsig -----BEGIN PGP SIGNATURE-----
+
+ iHUEABYKAB0WIQQCg6PrpLqfl0rHX+kYjl3CelT6JQUCZpVWaAAKCRAYjl3CelT6
+ JVHUAP0QTwdTC6yWA+yYirJ2GrYqB4J+rOiJ8EvZuv7DIYmnXwEAnHHn0/pXT/Ld
+ mcCGKcFfpONKAoIe+wnYgMCsIRrmaAQ=
+ =9KWo
+ -----END PGP SIGNATURE-----
+
+    Initial commit
+```
+
+# Process
+
+The following command was used to rebase the repository to add GPG signatures to all commits, using the 'exec' option to run a script for each commit that does a `git commit` with the `amend` and `no-edit` flags as well as the `-S` flag to sign the commit with our GPG key (and `--allow-empty` and `--empty=keep` on the parent command to preserve a few empty commits in the log):
+
+`git rebase --empty=keep -X theirs --committer-date-is-author-date --exec '../sign-commit.sh' -i 
+--root`
+
+The `git` command was originally inline but it wasn't picking up the commit date from the environment variables so it looked like months of work was done in seconds; the `--committer-date-is-author-date` would normally have done this but not when you specify your own command wtih `--exec`.
+
+By using interactive (`-i`) mode I was able to change `pick` to `drop` for the [two](https://github.com/pAI-OS/paios/commit/334b0e9c8e75a11b87d9719fd3d96527632cde8c) [commits](https://github.com/pAI-OS/paios/commit/a8d73741ca0188c744bb65630f78f0d38ade6f6c) that made it in unsigned early on (and remove the following `exec` lines). Telling the rebase `-X theirs` has it automatically accept the incoming change rather than drop to merge conflict resolution.
+
+```shell
+#!/bin/sh
+
+COMMIT_DATE=$(git show -s --format=%ci HEAD)
+AUTHOR_DATE=$(git show -s --format=%ai HEAD)
+
+GIT_COMMITTER_DATE="$COMMIT_DATE" GIT_AUTHOR_DATE="$AUTHOR_DATE" git commit --amend --no-edit --allow-empty -S
+```
+
+I now know more about git than I ever wanted to know, but not enough to be confident this was the best way to achieve the project's goals. Hopefully by sharing it I can save others hours of yak shaving.
+
+# Conclusion
+
+By implementing these security measures, we're taking significant steps to ensure the integrity and trustworthiness of our codebase. Fortunately it was early enough on in the project's life to be able to do with minimal disruption, though obviously it would have been better to start from the initial commit. While the new process may require some adjustment for contributors, the long-term benefits in terms of security and accountability are well worth the effort.
+
+We encourage all contributors to set up [GPG signing](https://docs.github.com/en/authentication/managing-commit-signature-verification/signing-commits) (not SSH!) for their commits and to familiarize themselves with our new verification process. Together, we can maintain a secure and trustworthy open-source project while raising the bar for the industry in light of increasingly frequent supply chain attacks.
