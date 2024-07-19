@@ -16,13 +16,13 @@ This was inspired by:
 - **Apple**: Apple's recent pioneering work on [Private Cloud Compute](https://security.apple.com/blog/private-cloud-compute/) (some 15 years into the transition from products to services that we call "cloud").
 - **Qubes OS**: Security operating system [Qubes OS](https://www.qubes-os.org/)' own [code signing](https://www.qubes-os.org/doc/code-signing/) policy requiring that "_All contributions to the Qubes OS source code must be cryptographically signed by the author’s PGP key._"
 
-# Key Components
+## Key Components
 
 1. **CODEOWNERS File**: The [CODEOWNERS](https://github.com/pAI-OS/paios/blob/main/.github/CODEOWNERS) file defines who is responsible for different parts of the repository. This ensures that the right people are automatically requested for review when changes are requested.
 1. **GPG Signature Verification Workflow**: We've set up a GitHub Actions workflow ([verify-gpg-signatures.yml](https://github.com/pAI-OS/paios/blob/main/.github/workflows/verify-gpg-signatures.yml)) that runs on pull requests, pushes to the main branch, and can be manually triggered. This workflow sets up the GPG environment and runs our custom verification script.
 1. **GPG Signature Verification Script**: Our custom verification script ([verify-gpg-signatures.sh](https://github.com/pAI-OS/paios/blob/main/.github/scripts/verify-gpg-signatures.sh)) is the heart of our verification process. It imports trusted GPG keys from the [gpg-keys](https://github.com/pAI-OS/paios/tree/main/.github/gpg-keys), verifies commit signatures, checks if signing keys are trusted or signed by trusted keys, and reports any issues with commit signatures.
 
-# Benefits of This Approach
+## Benefits of This Approach
 
 1. **Integrity**: By requiring GPG signatures on all commits, we ensure - _and you can verify_ - that all code changes are coming from verified contributors.
 1. **Accountability**: The CODEOWNERS file clearly defines who is responsible for different parts of the codebase. It currently contains myself and Karsten Wade, a fellow long-time open source community member.
@@ -30,7 +30,7 @@ This was inspired by:
 1. **Flexibility**: The workflow can be manually triggered with a flag to check all commits in the repository.
 1. **Transparency**: Any issues with signatures are clearly reported in the GitHub interface.
 
-# Implications for Developers
+## Implications for Developers
 
 We've recently migrated from SSH to GPG signatures for all commits in our history. As a result, anyone who cloned the [pAI-OS/paios](https://github.com/pAI-OS/paios) repo before July 15, 2024, will need to re-clone it. This is because the commit hashes, which are generated from the contents of the commit itself, have necessarily changed due to the rewriting of history to accommodate the new GPG signatures:
 
@@ -51,7 +51,7 @@ gpgsig -----BEGIN PGP SIGNATURE-----
     Initial commit
 ```
 
-# Process
+## Process
 
 The following command was used to rebase the repository to add GPG signatures to all commits, using the 'exec' option to run a script for each commit that does a `git commit` with the `amend` and `no-edit` flags as well as the `-S` flag to sign the commit with our GPG key (and `--allow-empty` and `--empty=keep` on the parent command to preserve a few empty commits in the log):
 
@@ -73,7 +73,7 @@ GIT_COMMITTER_DATE="$COMMIT_DATE" GIT_AUTHOR_DATE="$AUTHOR_DATE" git commit --am
 
 I now know more about git than I ever wanted to know, but not enough to be confident this was the best way to achieve the project's goals. Hopefully by sharing it I can save others hours of yak shaving.
 
-# Conclusion
+## Conclusion
 
 By implementing these security measures, we're taking significant steps to ensure the integrity and trustworthiness of our codebase. Fortunately it was early enough on in the project's life to be able to do with minimal disruption, though obviously it would have been better to start from the initial commit. While the new process may require some adjustment for contributors, the long-term benefits in terms of security and accountability are well worth the effort.
 
