@@ -40,14 +40,14 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/kwaai-ai-lab/paios',
+            'https://github.com/pAI-OS/paios.org',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/kwaai-ai-lab/paios',
+            'https://github.com/pAI-OS/paios.org',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -96,7 +96,7 @@ const config: Config = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          to: 'https://github.com/kwaai-ai-lab/paios',
+          to: 'https://github.com/pAI-OS/paios',
           label: 'GitHub',
           position: 'right',
         },
@@ -115,15 +115,15 @@ const config: Config = {
           ],
         },
         {
-          title: 'Community',
+          title: 'Supporters',
           items: [
             {
               label: 'Kwaai',
               to: 'https://www.kwaai.ai',
             },
             {
-              label: 'LinkedIn',
-              to: 'https://www.linkedin.com/company/kwaailab',
+              label: 'PAI Palooza',
+              to: 'https://paipalooza.com',
             },
           ],
         },
@@ -136,12 +136,12 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              to: 'https://github.com/kwaai-ai-lab/paios',
+              to: 'https://github.com/pAI-OS/paios',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Kwaai, a California 501(c)3 non-profit.`,
+      copyright: `Copyright © ${new Date().getFullYear()} pAI-OS Contributors.`,
     },
     prism: {
       theme: prismThemes.github,
