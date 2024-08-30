@@ -1,56 +1,54 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
-import type * as Preset from '@docusaurus/preset-classic';
+import { themes as prismThemes } from "prism-react-renderer";
+import type { Config } from "@docusaurus/types";
+import type * as Preset from "@docusaurus/preset-classic";
 
 const config: Config = {
-  title: 'pAI-OS',
-  tagline: 'Personal Artificial Intelligence Operating System',
-  favicon: 'img/favicon.png',
+  title: "pAI-OS",
+  tagline: "Personal Artificial Intelligence Operating System",
+  favicon: "img/favicon.ico",
 
   // Set the production url of your site here
-  url: 'https://paios.org',
+  url: "https://paios.org",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: "/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'pAI-OS', // Usually your GitHub org/user name.
-  projectName: 'paios.org', // Usually your repo name.
-  deploymentBranch: 'gh-pages',
+  organizationName: "pAI-OS", // Usually your GitHub org/user name.
+  projectName: "paios.org", // Usually your repo name.
+  deploymentBranch: "gh-pages",
   trailingSlash: true,
 
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: "en",
+    locales: ["en"],
   },
 
   presets: [
     [
-      'classic',
+      "classic",
       {
         docs: {
-          sidebarPath: './sidebars.ts',
+          sidebarPath: "./sidebars.ts",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/pAI-OS/paios.org',
+          editUrl: "https://github.com/pAI-OS/paios.org",
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/pAI-OS/paios.org',
+          editUrl: "https://github.com/pAI-OS/paios.org",
         },
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: "./src/css/custom.css",
         },
       } satisfies Preset.Options,
     ],
@@ -82,61 +80,61 @@ const config: Config = {
       isCloseable: true,
     },
     navbar: {
-      title: 'pAI-OS',
+      title: "pAI-OS",
       logo: {
-        alt: 'pAI-OS Logo',
-        src: 'img/favicon.png',
+        alt: "pAI-OS Logo",
+        src: "img/favicon.ico",
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'documentationSidebar',
-          position: 'left',
-          label: 'Intro',
+          type: "docSidebar",
+          sidebarId: "documentationSidebar",
+          position: "left",
+          label: "Intro",
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
+        { to: "/blog", label: "Blog", position: "left" },
         {
-          to: 'https://github.com/pAI-OS/paios',
-          label: 'GitHub',
-          position: 'right',
+          to: "https://github.com/pAI-OS/paios",
+          label: "GitHub",
+          position: "right",
         },
       ],
     },
     footer: {
-      style: 'dark',
+      style: "dark",
       links: [
         {
-          title: 'Docs',
+          title: "Docs",
           items: [
             {
-              label: 'Intro',
-              to: '/docs/intro',
+              label: "Intro",
+              to: "/docs/intro",
             },
           ],
         },
         {
-          title: 'Supporters',
+          title: "Supporters",
           items: [
             {
-              label: 'Kwaai',
-              to: 'https://www.kwaai.ai',
+              label: "Kwaai",
+              to: "https://www.kwaai.ai",
             },
             {
-              label: 'PAI Palooza',
-              to: 'https://paipalooza.com',
+              label: "PAI Palooza",
+              to: "https://paipalooza.com",
             },
           ],
         },
         {
-          title: 'More',
+          title: "More",
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
+              label: "Blog",
+              to: "/blog",
             },
             {
-              label: 'GitHub',
-              to: 'https://github.com/pAI-OS/paios',
+              label: "GitHub",
+              to: "https://github.com/pAI-OS/paios",
             },
           ],
         },
