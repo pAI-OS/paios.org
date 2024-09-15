@@ -93,6 +93,7 @@ const config: Config = {
           label: "Intro",
         },
         { to: "/blog", label: "Blog", position: "left" },
+        { to: "https://github.com/orgs/pAI-OS/discussions", label: "Discussions", position: "left" },
         {
           to: "https://github.com/pAI-OS/paios",
           label: "GitHub",
